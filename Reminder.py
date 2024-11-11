@@ -9,7 +9,7 @@ t=0
 
 def set():
     global t
-    rem = sd.askstring("Время напоминиания", "ВВедите время напоминания в формате чч.мм (в 24-часавом формате")
+    rem = sd.askstring("Время напоминиания", "Введите время напоминания в формате ЧЧ:ММ (24-часовой формат)")
     if rem:
         try:
             hour = int(rem.split(":")[0])
@@ -21,7 +21,7 @@ def set():
             t = dt.timestamp()
             print(t)
         except Exception as e:
-            mb.showinfo("Ошибка!", f"Произощла ошибка {e}")
+            mb.showerror("Ошибка!", f"Произощла ошибка {e}")
 
 
 def check():
@@ -29,13 +29,15 @@ def check():
     if t:
         now = time.time()
         if now >= t:
-            play.snd()
+            play_snd()
             t = 0
     window.after(10000, check)
 
 
-
-
+def play_snd():
+    pygame.mixer.init()
+    pygame.mixer.music.load("Reminder.mp3")
+    pygame.mixer.music.play()
 
 window = Tk()
 window.title("Напоминание")
