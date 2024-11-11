@@ -5,8 +5,10 @@ import datetime
 import time
 import pygame
 
+t=0
 
 def set():
+    global t
     rem = sd.askstring("Время напоминиания", "ВВедите время напоминания в формате чч.мм (в 24-часавом формате")
     if rem:
         try:
@@ -21,6 +23,15 @@ def set():
         except Exception as e:
             mb.showinfo("Ошибка!", f"Произощла ошибка {e}")
 
+
+def check():
+    global t
+    if t:
+        now = time.time()
+        if now >= t:
+            play.snd()
+            t = 0
+    window.after(10000, check)
 
 
 
