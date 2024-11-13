@@ -5,7 +5,7 @@ import datetime
 import time
 import pygame
 
-t=0
+t = 0
 
 def set():
     global t
@@ -31,7 +31,7 @@ def check():
         if now >= t:
             play_snd()
             t = 0
-    window.after(10000, check)
+    window.after(10000,check)
 
 
 def play_snd():
